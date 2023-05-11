@@ -1,0 +1,236 @@
+$body: #f3f7fa;
+$boxShadow: #0000001a;
+$filterTitle: #4a4a4a;
+$filtersHover: #f1fcff;
+$ticketsPrice: #2196f3;
+$transferTitle: #a0b0b9;
+$border: #dfe5ec;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $body;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+.flex {
+  position: relative;
+  margin-top: 160px;
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  position: absolute;
+  top: -120px;
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 0 $boxShadow;
+  justify-content: space-between;
+  height: 252px;
+}
+.filters__title {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  color: $filterTitle;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.filters__label {
+  width: 212px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: $filterTitle;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  transition: all 0.15s linear;
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 10px;
+  }
+  &:hover {
+    background: $filtersHover;
+  }
+}
+.checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-left: 1.5em;
+  &:checked + .checkbox__custom {
+    background-image: url(../../../public/images/check-select.svg);
+  }
+}
+.checkbox__custom {
+  position: absolute;
+  margin-left: -2em;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../public/images/check.svg);
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.tabs {
+  display: flex;
+}
+.tab {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 168px;
+  background-color: white;
+  border: solid $border 1px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s linear;
+  &:first-child {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-right: none;
+  }
+  &:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left: none;
+  }
+  &:not(.tab__active):hover {
+    background-color: $filtersHover;
+  }
+}
+.tab__active {
+  color: white;
+  background-color: $ticketsPrice;
+}
+.tickets {
+  width: 502px;
+  height: 184px;
+  background-color: white;
+  box-shadow: 0 2px 8px 0 $boxShadow;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.tickets__title {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 20px;
+}
+.tickets__price {
+  color: $ticketsPrice;
+  font-size: 24px;
+  line-height: 24px;
+}
+.tickets__path {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 20px;
+  margin-bottom: 10px;
+}
+.city__title,
+.time__title,
+.transfer__title {
+  color: $transferTitle;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.city__interval,
+.time__interval,
+.transfer__interval {
+  color: $filterTitle;
+  font-size: 14px;
+  line-height: 21px;
+}
+.filter__title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: $filterTitle;
+}
+.frad {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: $ticketsPrice;
+}
+
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 30px;
+    width: 100vw;
+    background-color: inherit;
+    border: none;
+    box-shadow: none;
+    justify-content: center;
+    margin-bottom: 70px;
+  }
+  .filters__label {
+    width: 150px;
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px 0 $boxShadow;
+  }
+  .filters__title {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: calc(50% - 80px);
+    top: -25px;
+  }
+  .content {
+    margin: 0;
+  }
+  .tabs {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+  .tab {
+    width: 150px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .tickets {
+    width: auto;
+  }
+}
+@media (max-width: 520px) {
+  .filters {
+    margin-bottom: 100px;
+  }
+  .tab {
+    width: 120px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 11px;
+  }
+}
