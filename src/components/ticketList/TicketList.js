@@ -88,40 +88,42 @@ function TicketList(props) {
   return (
     <div className={classes.content}>
       <Filters checkedChange={checkedChange} />
-      <Tabs
-        cheap={props.cheap}
-        fast={props.fast}
-        optimal={props.optimal}
-        handleCheapClick={handleCheapClick}
-        handleFastClick={handleFastClick}
-        handleOptimalClick={handleOptimalClick}
-      />
-      {props.load ? (
-        <Loading />
-      ) : sort(filter(ticketsDef)).length === 0 ? (
-        <div>
-          <div className={classes.filter__title}>Рейсов, подходящих под заданные фильтры, не найдено</div>
-        </div>
-      ) : (
-        <div>
-          {sort(filter(ticketsDef))
-            .map((g) => {
-              return (
-                <Ticket
-                  key={new Date().getTime() + g.price}
-                  carrier={g.carrier}
-                  price={g.price}
-                  there={g.segments[0]}
-                  back={g.segments[1]}
-                />
-              );
-            })
-            .slice(0, props.moreCount)}
-          <button className={classes.more} onClick={props.more}>
-            Показать ещё 5 билетов!
-          </button>
-        </div>
-      )}
+      <div className={classes.groop}>
+        <Tabs
+          cheap={props.cheap}
+          fast={props.fast}
+          optimal={props.optimal}
+          handleCheapClick={handleCheapClick}
+          handleFastClick={handleFastClick}
+          handleOptimalClick={handleOptimalClick}
+        />
+        {props.load ? (
+          <Loading />
+        ) : sort(filter(ticketsDef)).length === 0 ? (
+          <div>
+            <div className={classes.filter__title}>Рейсов, подходящих под заданные фильтры, не найдено</div>
+          </div>
+        ) : (
+          <div>
+            {sort(filter(ticketsDef))
+              .map((g) => {
+                return (
+                  <Ticket
+                    key={new Date().getTime() + g.price}
+                    carrier={g.carrier}
+                    price={g.price}
+                    there={g.segments[0]}
+                    back={g.segments[1]}
+                  />
+                );
+              })
+              .slice(0, props.moreCount)}
+            <button className={classes.more} onClick={props.more}>
+              Показать ещё 5 билетов!
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

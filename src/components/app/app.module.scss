@@ -24,8 +24,7 @@ body {
   top: -120px;
 }
 .filters {
-  position: absolute;
-  left: -246px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -81,7 +80,7 @@ body {
 .content {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 20px;
 }
 .tabs {
@@ -202,7 +201,9 @@ body {
     border: none;
     box-shadow: none;
     justify-content: center;
+    align-items: center;
     margin-bottom: 70px;
+    margin-right: 0;
   }
   .filters__label {
     width: 150px;
@@ -227,6 +228,9 @@ body {
   }
   .content {
     margin: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .tabs {
     margin: 0;
@@ -241,10 +245,22 @@ body {
   .tickets {
     width: auto;
   }
+  .filter__title {
+    width: 98vw;
+  }
+  .groop {
+    width: 100vw;
+  }
+  .more {
+    width: 100vw;
+  }
 }
 @media (max-width: 520px) {
   .filters {
     margin-bottom: 100px;
+  }
+  .filters__label {
+    width: 140px;
   }
   .tab {
     width: 120px;
