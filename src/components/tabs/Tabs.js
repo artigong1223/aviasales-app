@@ -1,11 +1,13 @@
 import React from 'react';
 
+import classes from '../app/app.module.scss';
+
 function Tabs(props) {
-  const classCheap = props.cheap ? 'tab tab__active' : 'tab';
-  const classFast = props.fast ? 'tab tab__active' : 'tab';
-  const classOptimal = props.optimal ? 'tab tab__active' : 'tab';
+  const classCheap = props.cheap ? `${classes.tab} ${classes.tab__active}` : classes.tab;
+  const classFast = props.fast ? `${classes.tab} ${classes.tab__active}` : classes.tab;
+  const classOptimal = props.optimal ? `${classes.tab} ${classes.tab__active}` : classes.tab;
   return (
-    <div className="tabs">
+    <div className={classes.tabs}>
       <div onClick={props.handleCheapClick} className={classCheap}>
         Самый дешевый
       </div>

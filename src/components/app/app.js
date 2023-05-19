@@ -1,16 +1,14 @@
 import React from 'react';
 
-import Filters from '../filters/Filters';
 import TicketList from '../ticketList/TicketList';
 import { withTicketStoreService } from '../hoc';
 
-import './app.scss';
+import classes from './app.module.scss';
 
 const App = () => {
   return (
-    <div className="flex">
-      <img className="logo" src="images/Logo.svg" />
-      <Filters />
+    <div className={classes.flex}>
+      <img className={classes.logo} src="images/Logo.svg" />
       <TicketList />
     </div>
   );

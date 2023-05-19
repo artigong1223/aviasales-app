@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import store from './store';
+import store from './redux/store';
 import App from './components/app/app';
 import { TicketStoreServiceProvider } from './components/context/ticketStore-context';
 import TicketStoreService from './service/ticketStore-service';

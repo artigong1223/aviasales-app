@@ -49,10 +49,9 @@ const loading = () => {
     type: 'LOADING',
   };
 };
-const error = (e) => {
+const more = () => {
   return {
-    type: 'ERROR',
-    payload: e,
+    type: 'MORE',
   };
 };
 const fetchTicket = (ticketStoreService, dispatch) => () => {
@@ -64,7 +63,7 @@ const fetchTicket = (ticketStoreService, dispatch) => () => {
     })
     .catch((e) => {
       console.log(e);
-      return dispatch(error(e));
+      return fetchTicket(ticketStoreService, dispatch)();
     });
 };
 export {
@@ -78,5 +77,5 @@ export {
   checkedClickTwo,
   checkedClickThree,
   loading,
-  error,
+  more,
 };
