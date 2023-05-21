@@ -22,7 +22,6 @@ import Loading from '../loading/Loading';
 import Filters from '../filters/Filters';
 
 function TicketList(props) {
-  let ticketsDef = [...props.tickets];
   const sort = (arr) => {
     props.cheap ? arr.sort((a, b) => a.price - b.price) : null;
     props.fast
@@ -45,25 +44,17 @@ function TicketList(props) {
   function filter(a) {
     let filtersDef = [];
     props.checkZero
-      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 0 && g.segments[1].stops.length === 0))
-      : (filtersDef = filtersDef.filter(
-          (g) => !a.filter((g) => g.segments[0].stops.length === 0 && g.segments[1].stops.length === 0).includes(g)
-        ));
+      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 0 || g.segments[1].stops.length === 0))
+      : filtersDef;
     props.checkOne
-      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 1 && g.segments[1].stops.length === 1))
-      : (filtersDef = filtersDef.filter(
-          (g) => !a.filter((g) => g.segments[0].stops.length === 1 && g.segments[1].stops.length === 1).includes(g)
-        ));
+      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 1 || g.segments[1].stops.length === 1))
+      : filtersDef;
     props.checkTwo
-      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 2 && g.segments[1].stops.length === 2))
-      : (filtersDef = filtersDef.filter(
-          (g) => !a.filter((g) => g.segments[0].stops.length === 2 && g.segments[1].stops.length === 2).includes(g)
-        ));
+      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 2 || g.segments[1].stops.length === 2))
+      : filtersDef;
     props.checkThree
-      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 3 && g.segments[1].stops.length === 3))
-      : (filtersDef = filtersDef.filter(
-          (g) => !a.filter((g) => g.segments[0].stops.length === 3 && g.segments[1].stops.length === 3).includes(g)
-        ));
+      ? filtersDef.unshift(...a.filter((g) => g.segments[0].stops.length === 3 || g.segments[1].stops.length === 3))
+      : filtersDef;
     return filtersDef;
   }
   useEffect(() => {
@@ -85,6 +76,8 @@ function TicketList(props) {
     e.target.name === '2 пересадки' ? props.checkedClickTwo() : null;
     e.target.name === '3 пересадки' ? props.checkedClickThree() : null;
   };
+  const unique = new Set(sort(filter(props.tickets)));
+  const finalTickets = Array.from(unique);
   return (
     <div className={classes.content}>
       <Filters checkedChange={checkedChange} />
@@ -99,13 +92,13 @@ function TicketList(props) {
         />
         {props.load ? (
           <Loading />
-        ) : sort(filter(ticketsDef)).length === 0 ? (
+        ) : finalTickets.length === 0 ? (
           <div>
             <div className={classes.filter__title}>Рейсов, подходящих под заданные фильтры, не найдено</div>
           </div>
         ) : (
           <div>
-            {sort(filter(ticketsDef))
+            {finalTickets
               .map((g) => {
                 return (
                   <Ticket

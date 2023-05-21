@@ -61,8 +61,7 @@ const fetchTicket = (ticketStoreService, dispatch) => () => {
     .then((data) => {
       return dispatch(ticketsLoaded(data));
     })
-    .catch((e) => {
-      console.log(e);
+    .catch(() => {
       return fetchTicket(ticketStoreService, dispatch)();
     });
 };
