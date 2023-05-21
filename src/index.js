@@ -4,15 +4,9 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 import App from './components/app/app';
-import { TicketStoreServiceProvider } from './components/context/ticketStore-context';
-import TicketStoreService from './service/ticketStore-service';
-
-const ticketStoreService = new TicketStoreService();
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <TicketStoreServiceProvider value={ticketStoreService}>
-      <App />
-    </TicketStoreServiceProvider>
+    <App />
   </Provider>
 );

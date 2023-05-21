@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TicketList from '../ticketList/TicketList';
-import { withTicketStoreService } from '../hoc';
 
 import classes from './app.module.scss';
 
@@ -13,4 +12,4 @@ const App = () => {
     </div>
   );
 };
-export default withTicketStoreService()(App);
+export default App;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import classes from '../app/app.module.scss';
 import Ticket from '../ticket/ticket';
-import { withTicketStoreService } from '../hoc';
+import TicketStoreService from '../../service/ticketStore-service';
 import {
   fetchTicket,
   cheapClick,
@@ -126,7 +126,8 @@ const mapStateToProps = ({
 }) => {
   return { tickets, cheap, fast, optimal, load, moreCount, checkAll, checkZero, checkOne, checkTwo, checkThree };
 };
-const mapDispatchToProps = (dispatch, { ticketStoreService }) => {
+const mapDispatchToProps = (dispatch) => {
+  const ticketStoreService = new TicketStoreService();
   return {
     checkedClickAll: () => {
       dispatch(checkedClickAll());
@@ -162,4 +163,4 @@ const mapDispatchToProps = (dispatch, { ticketStoreService }) => {
   };
 };
 
-export default withTicketStoreService()(connect(mapStateToProps, mapDispatchToProps)(TicketList));
+export default connect(mapStateToProps, mapDispatchToProps)(TicketList);
