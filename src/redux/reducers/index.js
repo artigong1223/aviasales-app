@@ -131,7 +131,7 @@ const updateTicketsList = (state, action) => {
     case 'TICKETS_LOADED':
       return {
         ...state.ticketsList,
-        tickets: state.filterList.checkThree ? ([...action.payload].length = 2) : action.payload,
+        tickets: action.payload,
         load: false,
       };
     case 'LOADING':
