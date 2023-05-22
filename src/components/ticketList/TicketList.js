@@ -20,6 +20,7 @@ import {
 import Tabs from '../tabs/Tabs';
 import Loading from '../loading/Loading';
 import Filters from '../filters/Filters';
+import ErrorIndicator from '../error/ErrorIndicator';
 
 function TicketList(props) {
   const sort = (arr) => {
@@ -90,7 +91,9 @@ function TicketList(props) {
           handleFastClick={handleFastClick}
           handleOptimalClick={handleOptimalClick}
         />
-        {props.load ? (
+        {props.err ? (
+          <ErrorIndicator />
+        ) : props.load ? (
           <Loading />
         ) : finalTickets.length === 0 ? (
           <div>
@@ -102,7 +105,7 @@ function TicketList(props) {
               .map((g) => {
                 return (
                   <Ticket
-                    key={new Date().getTime() + g.price}
+                    key={g.price + g.segments[0].duration + g.segments[1].duration}
                     carrier={g.carrier}
                     price={g.price}
                     there={g.segments[0]}
@@ -121,10 +124,10 @@ function TicketList(props) {
   );
 }
 const mapStateToProps = ({
-  ticketsList: { tickets, moreCount, load },
-  filterList: { cheap, fast, optimal, checkAll, checkZero, checkOne, checkTwo, checkThree },
+  updateTicketsList: { tickets, moreCount, load, err },
+  updateFilterList: { cheap, fast, optimal, checkAll, checkZero, checkOne, checkTwo, checkThree },
 }) => {
-  return { tickets, cheap, fast, optimal, load, moreCount, checkAll, checkZero, checkOne, checkTwo, checkThree };
+  return { tickets, cheap, fast, optimal, load, moreCount, checkAll, checkZero, checkOne, checkTwo, checkThree, err };
 };
 const mapDispatchToProps = (dispatch) => {
   const ticketStoreService = new TicketStoreService();

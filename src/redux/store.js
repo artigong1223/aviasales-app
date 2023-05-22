@@ -1,6 +1,9 @@
-import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
+import { legacy_createStore as createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
-import reducer from './reducers';
+import updateFilterList from './reducers/updateFilterList';
+import updateTicketsList from './reducers/updateTicketsList';
+
+const rootReducers = combineReducers({ updateFilterList, updateTicketsList });
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -14,5 +17,5 @@ const logMiddleware = () => (next) => (action) => {
   return result;
 };
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(logMiddleware)));
+const store = createStore(rootReducers, composeEnhancers(applyMiddleware(logMiddleware)));
 export default store;

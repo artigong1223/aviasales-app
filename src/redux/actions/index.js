@@ -54,16 +54,36 @@ const more = () => {
     type: 'MORE',
   };
 };
+const error = (error) => {
+  return {
+    type: 'ERROR',
+    payload: error,
+  };
+};
+let id;
 const fetchTicket = (ticketStoreService, dispatch) => () => {
   dispatch(loading());
-  ticketStoreService
-    .getTickets()
-    .then((data) => {
-      return dispatch(ticketsLoaded(data));
-    })
-    .catch(() => {
-      return fetchTicket(ticketStoreService, dispatch)();
+  if (!id) {
+    ticketStoreService.initSearch().then((g) => {
+      id = g;
+      ticketStoreService
+        .getTickets(id)
+        .then((data) => data)
+        .catch((e) => {
+          e.response.status !== 500 ? dispatch(error(e)) : null;
+          return fetchTicket(ticketStoreService, dispatch)();
+        });
     });
+  } else {
+    ticketStoreService
+      .getTickets(id)
+      .then((data) => data)
+      .catch((e) => {
+        e.response.status !== 500 ? dispatch(error(e)) : null;
+        return fetchTicket(ticketStoreService, dispatch)();
+      });
+  }
+  dispatch(ticketsLoaded(ticketStoreService.ticketsList));
 };
 export {
   fetchTicket,

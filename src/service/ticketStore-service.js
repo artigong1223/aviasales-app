@@ -4,20 +4,14 @@ export default class TicketStoreService {
   ticketsList = [];
   initSearch = async () => {
     const response = await axios.get('https://aviasales-test-api.kata.academy/search');
-    !localStorage.getItem('searchId') ? localStorage.setItem('searchId', response.data.searchId) : null;
+    return response.data.searchId;
   };
   getTickets = async (searchId) => {
-    await this.initSearch();
-    const response = await axios.get(
-      `https://aviasales-test-api.kata.academy/tickets?searchId=${localStorage.getItem('searchId')}`
-    );
+    const response = await axios.get(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`);
     const { tickets, stop } = await response.data;
     this.ticketsList.push(...tickets);
     if (!stop) {
       return this.getTickets(searchId);
-    }
-    if (stop) {
-      localStorage.clear();
     }
     return this.ticketsList;
   };
