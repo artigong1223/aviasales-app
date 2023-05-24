@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import classes from '../app/app.module.scss';
+import classes from './filters.module.scss';
 
 const plainOptions = [
   { name: 'Без пересадок' },

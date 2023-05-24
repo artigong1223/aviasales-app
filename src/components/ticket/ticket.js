@@ -1,7 +1,7 @@
 import React from 'react';
 import { format, add } from 'date-fns';
 
-import classes from '../app/app.module.scss';
+import classes from './tickets.module.scss';
 
 function Ticket(props) {
   const convertDateToTime = (date) => {

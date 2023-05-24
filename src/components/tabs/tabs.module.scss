@@ -1,0 +1,57 @@
+$filtersHover: #f1fcff;
+$ticketsPrice: #2196f3;
+$border: #dfe5ec;
+.tabs {
+  display: flex;
+}
+.tab {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 168px;
+  background-color: white;
+  border: solid $border 1px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s linear;
+  &:first-child {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-right: none;
+  }
+  &:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left: none;
+  }
+  &:not(.tab__active):hover {
+    background-color: $filtersHover;
+  }
+}
+.tab__active {
+  color: white;
+  background-color: $ticketsPrice;
+}
+@media (max-width: 768px) {
+  .tabs {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+  .tab {
+    width: 150px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+@media (max-width: 520px) {
+  .tab {
+    width: 120px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 11px;
+  }
+}

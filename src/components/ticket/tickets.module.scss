@@ -1,0 +1,54 @@
+$boxShadow: #0000001a;
+$filterTitle: #4a4a4a;
+$ticketsPrice: #2196f3;
+$transferTitle: #a0b0b9;
+$border: #dfe5ec;
+.tickets {
+  width: 502px;
+  height: 184px;
+  background-color: white;
+  box-shadow: 0 2px 8px 0 $boxShadow;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.tickets__title {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  margin: 20px 20px;
+}
+.tickets__price {
+  color: $ticketsPrice;
+  font-size: 24px;
+  line-height: 24px;
+}
+.tickets__path {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 20px;
+  margin-bottom: 10px;
+}
+.city__title,
+.time__title,
+.transfer__title {
+  color: $transferTitle;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.city__interval,
+.time__interval,
+.transfer__interval {
+  color: $filterTitle;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@media (max-width: 768px) {
+  .tickets {
+    width: 90vw;
+    margin: auto;
+  }
+}

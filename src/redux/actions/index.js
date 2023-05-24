@@ -64,23 +64,26 @@ let id;
 const fetchTicket = (ticketStoreService, dispatch) => () => {
   dispatch(loading());
   if (!id) {
-    ticketStoreService.initSearch().then((g) => {
-      id = g;
-      ticketStoreService
-        .getTickets(id)
-        .then((data) => data)
-        .catch((e) => {
-          e.response.status !== 500 ? dispatch(error(e)) : null;
-          return fetchTicket(ticketStoreService, dispatch)();
-        });
-    });
+    ticketStoreService
+      .initSearch()
+      .then((g) => {
+        id = g;
+        ticketStoreService
+          .getTickets(id)
+          .then((data) => data)
+          .catch((e) => {
+            e.code !== 'ERR_BAD_RESPONSE' ? dispatch(error(e)) : null;
+            return e.code !== 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : null;
+          });
+      })
+      .catch((e) => dispatch(error(e)));
   } else {
     ticketStoreService
       .getTickets(id)
       .then((data) => data)
       .catch((e) => {
-        e.response.status !== 500 ? dispatch(error(e)) : null;
-        return fetchTicket(ticketStoreService, dispatch)();
+        e.code !== 'ERR_BAD_RESPONSE' ? dispatch(error(e)) : null;
+        return e.code !== 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : null;
       });
   }
   dispatch(ticketsLoaded(ticketStoreService.ticketsList));

@@ -1,0 +1,48 @@
+$filterTitle: #4a4a4a;
+$ticketsPrice: #2196f3;
+$border: #dfe5ec;
+
+.filter__title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: $filterTitle;
+}
+.more {
+  width: 502px;
+  height: 50px;
+  background-color: $ticketsPrice;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0, 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+@media (max-width: 768px) {
+  .content {
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .groop {
+    width: 100vw;
+  }
+  .more {
+    width: 100vw;
+  }
+  .filter__title {
+    width: 98vw;
+  }
+}

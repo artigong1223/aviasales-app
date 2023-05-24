@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from '../app/app.module.scss';
+import classes from './tabs.module.scss';
 
 function Tabs(props) {
   const classCheap = props.cheap ? `${classes.tab} ${classes.tab__active}` : classes.tab;

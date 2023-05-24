@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import classes from '../app/app.module.scss';
 import Ticket from '../ticket/ticket';
 import TicketStoreService from '../../service/ticketStore-service';
 import {
@@ -21,6 +20,8 @@ import Tabs from '../tabs/Tabs';
 import Loading from '../loading/Loading';
 import Filters from '../filters/Filters';
 import ErrorIndicator from '../error/ErrorIndicator';
+
+import classes from './ticketsList.module.scss';
 
 function TicketList(props) {
   const sort = (arr) => {
