@@ -72,8 +72,7 @@ const fetchTicket = (ticketStoreService, dispatch) => () => {
           .getTickets(id)
           .then((data) => data)
           .catch((e) => {
-            e.code !== 'ERR_BAD_RESPONSE' ? dispatch(error(e)) : null;
-            return e.code !== 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : null;
+            return e.code === 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : dispatch(error(e));
           });
       })
       .catch((e) => dispatch(error(e)));
@@ -82,8 +81,7 @@ const fetchTicket = (ticketStoreService, dispatch) => () => {
       .getTickets(id)
       .then((data) => data)
       .catch((e) => {
-        e.code !== 'ERR_BAD_RESPONSE' ? dispatch(error(e)) : null;
-        return e.code !== 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : null;
+        return e.code === 'ERR_BAD_RESPONSE' ? fetchTicket(ticketStoreService, dispatch)() : dispatch(error(e));
       });
   }
   dispatch(ticketsLoaded(ticketStoreService.ticketsList));
